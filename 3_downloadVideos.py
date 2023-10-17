@@ -5,6 +5,7 @@ outputFile = "3_videosFinishedDownloading.txt"
 
 # this is on a usb drive
 # keep the b prefix for os.path.join
+# DONT CHANGE THIS EVEN FOR DISCORD IMAGES
 storagePath = b"../../../../../../../Volumes/THKAILAR/ImgurBackups"
 
 # ================================
@@ -34,6 +35,7 @@ def getMp4UrlsToDownload():
     alreadyDownloadedLinks = set()
     with open(outputFile, 'r+') as outfile:
         for line in outfile:
+            # each line of file is { url: filepath }
             url = list(json.loads(line).keys())[0].strip()
             alreadyDownloadedLinks.add(url)
     

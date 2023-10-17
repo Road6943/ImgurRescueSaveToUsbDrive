@@ -7,9 +7,10 @@
 # the log file shows all failures
 # log appends each run but doesnt redownload sucesful prior dl's
 
-inputFile = "1_linksImgur.txt"
+inputFile = "DiscordLinks/1_linksDiscord.txt"
 
 # this is on a usb drive
+# DONT CHANGE THIS, even for DISCORD IMAGES
 storagePath = "../../../../../../../Volumes/THKAILAR/ImgurBackups"
 
 # =================================
@@ -52,12 +53,22 @@ def checkForFailures(imageLinks: set[str]):
     print(f"THERE WERE {len(failedDownloads)} FAILED DOWNLOADS:")
     for link in failedDownloads:
         print(link)
+    print(f"^^ THERE WERE {len(failedDownloads)} FAILED DOWNLOADS ^^")
+    # make a clickable link html file of all failed downloads:
+    with open("4_failedLinks.html", "w+") as failedLinksFile:
+        failedLinksFile.write('<html><head></head><body><ol>')
+        for link in failedDownloads:
+            failedLinksFile.write(f'<li><a href={link}>{link}</a></li>')
+        failedLinksFile.write('</ol></body></html>')
 
 
 
 def main():
     imageLinks = getUrlsToDownload()
+    # keep downloadImages commented out until you actually need it
+    # to avoid making imgdl.log too big (bc it expands with every run)
+    #   --- it won't redownload already done images, but the log will list them again
     #downloadImages(imageLinks)
-    checkForFailures(imageLinks)
+    checkForFailures(imageLinks) # this often shows broken links
 
 main()

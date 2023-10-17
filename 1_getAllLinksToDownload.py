@@ -34,9 +34,9 @@ def getImgurLinks():
                     hashmap = json.loads(line)
                     for imgurLink,cloudinaryLink in hashmap.items():
 
+                        # special cases to skip
                         if imgurLink in ['https://imgur.com/a/qhzJj']:
                             continue
-
                         if cloudinaryLink in ["https://ibb.co/album/NrRw8d?sort=name_asc&page=1"]:
                             continue
 
